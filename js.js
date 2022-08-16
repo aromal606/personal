@@ -2,7 +2,7 @@
 var nameError=document.getElementById('name-error');
 var emailError=document.getElementById('email-error');
 var phoneError=document.getElementById('phone-error');
-var messageError=document.getElementById('click-error');
+var messageError=document.getElementById('message-error');
 var clickError = document.getElementById('click-error');
 
 function validateName(){
@@ -59,6 +59,18 @@ function validatePhone() {
     return true;
 
 }
+function validateMessage(){
+    var message = document.getElementById('message').value;
+    if(message.length<=40){
+    messageError.innerHTML='ok';
+    return false;
+    }
+    if(message.length>=40)
+    messageError.innerHTML='limit your words ';
+    return true;
+
+
+}
 function validateForm() {
     if (!validateName() || !validateEmail() || !validatePhone() ) {
         clickError.style.display = 'block'
@@ -73,7 +85,7 @@ function validateForm() {
 
 
 $("#submit-form").submit((e) => {
-    e.preventDefault()
+    e.preventDefault();
     $.ajax({
         url: "https://script.google.com/macros/s/AKfycbzcttz9LU73rtsMF7Z_YEKhxA9PlQ6BV5UfWL8_AqgCyAHcwClXP7biMGHvzZLhiZka/exec",
         data: $("#submit-form").serialize(),
@@ -87,49 +99,3 @@ $("#submit-form").submit((e) => {
         }
     })
 })
-
-/*
-
-$(document).ready(function(){
-    $("#submit-form").validate({
-        rules:{
-            fname:{
-            required:true,
-            
-        },
-        email:{
-            required:true,
-            email:true
-        },
-        Phone:{
-            required:true,
-            maxlenth:10,
-            Phone:true
-        }
-    }
-
-    })
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
